@@ -161,7 +161,7 @@ mousedown$    --d----------------
 mousemove$    ----m-m-m-m-m-m----
 mouseup$      ----------------u--
 
-regex          d(m*)u
+regex                dm*u
 
 result        ----m-m-m-m-m-m-|
 ```
@@ -176,7 +176,7 @@ Q:
 
 Given an expression:
 
-`mousedown$ (mousemove$*) mouseup$`
+`mousedown$ mousemove$* mouseup$`
 
 how following situations should be handled:
 
@@ -188,19 +188,16 @@ A: the resulting observable never completes
 
 A: it is ignored
 
-TODO: special cases to cover
-      maybe, with introduction of negative queries (e.g. `A!BC`) the match search should be restarted
+TODO:
+    Maybe, with introduction of negative queries (something like `D[M!D]*U` -- mousemoves, but `!` NOT mousedowns) the match search should be restarted, and current Observable should error
+    Maybe, matching should restart with this new emission. This behaviour could be explicitly defined via some syntax addition.
 
 - down$ emits once again after up$
 
-A: the observable will complete with up$ event, expression needs to be wrapped into `(` ... `)*` to listen to another cycle of down-move-up events
+A: the observable will complete with up$ event, expression needs to be wrapped into a group with repeat `( ... )*` to listen to another cycle of down-move-up events
 
 - down$ or up$ completes or errors
 
 A: output errors
-
-- down$ emits twice before up$
-
-A: capturing group observable errors, completes and root observable emits again
 
 ---
