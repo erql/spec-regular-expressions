@@ -4,7 +4,7 @@ This repository defines specification of regular expressions for regular streams
 
 List of implementations:
 
-- RxJS — rxjs-rexprs
+- RxJS — exprs-rx `npm i exprs-rx`
 
 ## Intro
 
@@ -201,3 +201,5 @@ A: the observable will complete with up$ event, expression needs to be wrapped i
 A: output errors
 
 ---
+
+(c) Kostia Palchyk
