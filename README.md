@@ -1,8 +1,10 @@
 # Regular Expressions for Reactive Streams 🐇
 
-This repository defines specification for reactive regular expressions.
+This repository defines specification of regular expressions for regular streams.
 
 List of implementations:
+
+- RxJS — rxjs-rexprs
 
 ## Intro
 
@@ -78,23 +80,23 @@ We select all the `m` events that occured after `d` and before `m`!
 
 ## Spec
 
-### Vocabulary
+### Definitions
 
 #### Expression
 
 A string, representing a sequence of events
 
-#### Capturing groups
+#### Capturing group
 
 `()` defined in a pair of parenthesis, wrapping an expression
 
-#### Streams
+#### Stream
 
 `ABC` capital letters represent streams
 
 #### Repeat
 
-`*` symbol indicates that prepending expression can occur `0` to `Infinity` times
+Repeat `*` symbol indicates that prepending expression can occur `0` to `Infinity` times
 
 #### Root expression
 
@@ -118,37 +120,27 @@ If an expression has started matching events and then fails against the expressi
 
 ### Examples
 
-**Single click (exclusive):**
+**Single click:**
 
 ```
 click$        --c---c----c-------
 
 regex                 c 
 
-result        --|
+result        --(c|)
 ```
 
-**Single click (captured):**
-
-```
-click$        --c---c----c-------
-
-regex                (c)
-
-result        --c|
-```
-
-**All clicks (captured)**
+**All clicks**
 
 ```
 click$        --c---c----c-------
 
-regex                (c*)
+regex                 c*
 
 result        --c---c----c-------
 ```
 
-_.alternative._
+**All clicks as observables**
 
 ```
 click$        --c---c----c-------
@@ -174,40 +166,11 @@ regex          d(m*)u
 result        ----m-m-m-m-m-m-|
 ```
 
+## Ideas:
 
-## Examples
+check out IDEAS.md
 
-DnD:
-
-```js
-tag`(${mousedown}${mousemove}*${mouseup})*`
-```
-
-Consequent clicks:
-
-```js
-tag`(${click}${click})*`
-```
-
-Consequent clicks w/o outside clicking:
-
-```js
-tag`(${click} ^${outsideClick} ${click})`
-```
-
-Timely clicks:
-
-```js
-tag`(${click} ${click})5ms`
-```
-
-# ===========
-
-## Ideas and TBD:
-
-check out
-
-## Questions:
+## Questions and Answers:
 
 Q:
 
