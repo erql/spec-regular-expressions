@@ -205,30 +205,7 @@ tag`(${click} ${click})5ms`
 
 ## Ideas and TBD:
 
-no-Ideas and 
-
-`A !B C`
-
-or
-
-`A ^B C`
-
-ensure timed gaps between emissions
-
-`A 5ms A`
-
-or
-
-`A (^A 5ms) A`
-`A (!A 5ms) A`
-
-non-capturing groups
-
-`A (? B ) A`
-
-pipes in the expression
-
-`A |> ${ filter(x => x) }`
+check out
 
 ## Questions:
 
@@ -246,13 +223,10 @@ A: the resulting observable never completes
 
 - down$ emits once again before up$
 
-A: ???
+A: it is ignored
 
-EITHER it should complete the previous emission
-OR     it should ignore it
-OR     root group should emit another subgroup
-
-maybe it should be defined by some "greedy" operator
+TODO: special cases to cover
+      maybe, with introduction of negative queries (e.g. `A!BC`) the match search should be restarted
 
 - down$ emits once again after up$
 
