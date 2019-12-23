@@ -52,3 +52,9 @@ or
 ## pipes in the expression
 
 `A |> ${ filter(x => x) }`
+
+## Names groups
+
+`(:id A)`
+
+Named groups emit Observables with `id` property
